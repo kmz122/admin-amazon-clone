@@ -1,0 +1,30 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "@nuxt/content": "^1.5.0",
+    "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "cors": "^2.8.5",
+    "nuxt": "^2.14.0"
+  },
+  "devDependencies": {
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "config": {
+    "nuxt": {
+      "port": "8000"
+    }
+  }
+}
