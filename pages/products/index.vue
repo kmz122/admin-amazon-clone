@@ -121,12 +121,8 @@ export default {
       // let categories = $axios.$get("http://localhost:3000/api/categories");
       // let owners = $axios.$get("http://localhost:3000/api/owners");
 
-      let categories = $axios.$get(
-        "https://api-amazon-clone.herokuapp.com/api/categories"
-      );
-      let owners = $axios.$get(
-        "https://api-amazon-clone.herokuapp.com/api/owners"
-      );
+      let categories = $axios.$get("/api/categories");
+      let owners = $axios.$get("/api/owners");
 
       const [catResponse, ownerResponse] = await Promise.all([
         categories,
@@ -180,10 +176,7 @@ export default {
       //   data
       // );
 
-      let response = await this.$axios.$post(
-        "https://api-amazon-clone.herokuapp.com/api/products",
-        data
-      );
+      let response = await this.$axios.$post("/api/products", data);
 
       //api-amazon-clone.herokuapp.com/
 

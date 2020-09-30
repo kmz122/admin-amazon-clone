@@ -1,5 +1,9 @@
-const API_url =
-  "https://api-amazon-clone.herokuapp.com/ || http://localhost:3000";
+let development = process.env.NODE_ENV !== "production";
+const base_url = development
+  ? "http://localhost:3000"
+  : "https://api-amazon-clone.herokuapp.com";
+// const API_URL =
+//   "https://api-amazon-clone.herokuapp.com/ || http://localhost:3000";
 
 // const API_url = "https://api-amazon-clone.herokuapp.com";
 
@@ -72,12 +76,20 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true,
-    baseURL: API_url
+    proxy: true
+    // baseURL: development
+    //   ? "http://localhost:3000"
+    //   : "https://api-amazon-clone.herokuapp.com"
   },
 
   proxy: {
-    "/api": API_url
+    // "/api": {
+    //   target: "https://api-amazon-clone.herokuapp.com",
+    //   pathRewrite: { "^/api": "" }
+    // }
+    "/api": development
+      ? "http://localhost:3000"
+      : "https://api-amazon-clone.herokuapp.com"
   },
 
   /*

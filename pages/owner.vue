@@ -89,9 +89,7 @@ export default {
     try {
       // let response = await $axios.$get("http://localhost:3000/api/owners");
 
-      let response = await $axios.$get(
-        "https://api-amazon-clone.herokuapp.com/api/owners"
-      );
+      let response = await $axios.$get("/api/owners");
 
       return {
         owners: response.owners
@@ -128,10 +126,7 @@ export default {
         //   data
         // );
 
-        let response = this.$axios.$post(
-          "https://api-amazon-clone.herokuapp.com/api/owners",
-          data
-        );
+        let response = this.$axios.$post("/api/owners", data);
 
         // this.$router.push("/owner");
         // this.owners.push(data);

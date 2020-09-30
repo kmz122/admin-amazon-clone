@@ -101,9 +101,7 @@ export default {
   async asyncData({ $axios }) {
     try {
       // let response = await $axios.$get("http://localhost:3000/api/products");
-      let response = await $axios.$get(
-        "https://api-amazon-clone.herokuapp.com/api/products"
-      );
+      let response = await $axios.$get("/api/products");
 
       // console.log(response);
       // console.log("This is only the products array from the response");
@@ -124,9 +122,7 @@ export default {
         //   `http://localhost:3000/api/products/${id}`
         // );
 
-        let response = await this.$axios.$delete(
-          `https://api-amazon-clone.herokuapp.com/api/products/${id}`
-        );
+        let response = await this.$axios.$delete(`/api/products/${id}`);
 
         if (response.status) {
           this.products.splice(index, 1);

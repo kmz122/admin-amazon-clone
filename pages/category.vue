@@ -60,9 +60,7 @@ export default {
     try {
       // let response = await $axios.$get("http://localhost:3000/api/categories");
 
-      let response = await $axios.$get(
-        "https://api-amazon-clone.herokuapp.com/api/categories"
-      );
+      let response = await $axios.$get("/api/categories");
 
       return {
         categories: response.categories
@@ -88,10 +86,7 @@ export default {
         //   data
         // );
 
-        let response = this.$axios.$post(
-          "https://api-amazon-clone.herokuapp.com/api/categories",
-          data
-        );
+        let response = this.$axios.$post("/api/categories", data);
 
         //   this.$router.push("/");
         this.categories.push(data);

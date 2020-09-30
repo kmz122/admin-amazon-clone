@@ -129,15 +129,9 @@ export default {
       //   `http://localhost:3000/api/products/${params.id}`
       // );
 
-      let categories = $axios.$get(
-        "https://api-amazon-clone.herokuapp.com/api/categories"
-      );
-      let owners = $axios.$get(
-        "https://api-amazon-clone.herokuapp.com/api/owners"
-      );
-      let product = $axios.$get(
-        `https://api-amazon-clone.herokuapp.com/api/products/${params.id}`
-      );
+      let categories = $axios.$get("/api/categories");
+      let owners = $axios.$get("/api/owners");
+      let product = $axios.$get(`/api/products/${params.id}`);
 
       const [catResponse, ownerResponse, productResponse] = await Promise.all([
         categories,
@@ -194,7 +188,7 @@ export default {
       // );
 
       let result = await this.$axios.$put(
-        `https://api-amazon-clone.herokuapp.com/api/products/${this.$route.params.id}`,
+        `/api/products/${this.$route.params.id}`,
         data
       );
 
