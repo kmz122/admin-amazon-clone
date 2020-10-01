@@ -16,15 +16,25 @@
                 <label for style="margin-bottom: 0px">Category</label>
                 <!-- <select name id class="a-select-option" v-model="categoryID"> -->
 
-                <select name id class="a-select-option" v-model="categoryID">
-                  <option
-                    v-for="category in categories"
-                    :value="category._id"
-                    :key="category._id"
-                    class="value"
-                    >{{ category.type }}</option
-                  >
-                </select>
+                <template>
+                  <div v-if="categoryID">
+                    <select
+                      name
+                      id
+                      class="a-select-option"
+                      v-model="categoryID"
+                    >
+                      <option
+                        v-for="cat in categories"
+                        :value="cat._id"
+                        :key="cat._id"
+                        class="value"
+                      >
+                        {{ cat.type }}
+                      </option>
+                    </select>
+                  </div>
+                </template>
               </div>
 
               <!-- Owner Dropdown-->
@@ -36,8 +46,9 @@
                     :value="owner._id"
                     :key="owner._id"
                     class="value"
-                    >{{ owner.name }}</option
                   >
+                    {{ owner.name }}
+                  </option>
                 </select>
               </div>
 
@@ -96,6 +107,8 @@
                     <input type="file" @change="onFileSelected" />
                     <p style="margin-top: -70px">{{ fileName }}</p>
                   </label>
+                  <!-- <img :src="selectedFile" alt="your product photo" /> -->
+                  <!-- <b-img :src="selectedFile" fluid alt="Product photo"></b-img> -->
                 </div>
               </div>
 
@@ -136,16 +149,25 @@ export default {
       const [catResponse, ownerResponse, productResponse] = await Promise.all([
         categories,
         owners,
-        product
+        product,
       ]);
       //   console.log(catResponse);
-      console.log(("From Product Update page: ", productResponse));
+      // console.log(("From Product Update page: ", productResponse));
       //   console.log(ownerResponse);
 
       return {
         categories: catResponse.categories,
         owners: ownerResponse.owners,
-        product: productResponse.product
+        product: productResponse.product,
+        categoryID: productResponse.product.category._id,
+        ownerID: productResponse.product.owner._id,
+        title: productResponse.product.title,
+        price: productResponse.product.price,
+        stockQuantity: productResponse.product.stockQuantity,
+        description: productResponse.product.description,
+        selectedFile: productResponse.product.photo,
+        selectedFileCheck: productResponse.product.photo,
+        // fileName: String(productResponse.product.photo),
       };
     } catch (err) {
       console.log(err);
@@ -157,18 +179,18 @@ export default {
       categoryID: null,
       ownerID: null,
       title: "",
-      price: "",
-      stockQuantity: "",
+      price: 0,
+      stockQuantity: 0,
       description: "",
       selectedFile: null,
-      fileName: ""
+      fileName: "",
     };
   },
 
   methods: {
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
-      console.log(this.selectedFile);
+      console.log("event.target.files", event.target.files);
       this.fileName = event.target.files[0].name;
     },
 
@@ -177,23 +199,26 @@ export default {
       data.append("title", this.title);
       data.append("description", this.description);
       data.append("price", this.price);
-      data.append("stockQuantity ", this.stockQuantity);
+      data.append("stockQuantity", this.stockQuantity);
       data.append("categoryID", this.categoryID);
       data.append("ownerID", this.ownerID);
+
+      // if (this.selectedFile !== this.selectedFileCheck) {
       data.append("photo", this.selectedFile, this.selectedFile.name);
+      // } else {
+      //   data.append("photo", "");
+      // }
+      // else data.append("photo", this.fileName);
 
       // let result = await this.$axios.$put(
       //   `http://localhost:3000/api/products/${this.$route.params.id}`,
       //   data
       // );
 
-      let result = await this.$axios.$put(
-        `/api/products/${this.$route.params.id}`,
-        data
-      );
+      await this.$axios.$put(`/api/products/${this.$route.params.id}`, data);
 
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>

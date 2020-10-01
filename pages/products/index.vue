@@ -20,8 +20,9 @@
                     :value="category._id"
                     :key="category._id"
                     class="value"
-                    >{{ category.type }}</option
                   >
+                    {{ category.type }}
+                  </option>
                 </select>
               </div>
 
@@ -34,8 +35,9 @@
                     :value="owner._id"
                     :key="owner._id"
                     class="value"
-                    >{{ owner.name }}</option
                   >
+                    {{ owner.name }}
+                  </option>
                 </select>
               </div>
 
@@ -126,7 +128,7 @@ export default {
 
       const [catResponse, ownerResponse] = await Promise.all([
         categories,
-        owners
+        owners,
       ]);
       //   console.log(catResponse);
       // console.log("ownerResponse.owners: ", ownerResponse.owners);
@@ -134,7 +136,7 @@ export default {
 
       return {
         categories: catResponse.categories,
-        owners: ownerResponse.owners
+        owners: ownerResponse.owners,
       };
     } catch (err) {
       console.log(err);
@@ -147,10 +149,10 @@ export default {
       ownerID: null,
       title: "",
       price: 0,
-      stockQuantity: 1,
+      stockQuantity: 0,
       description: "",
       selectedFile: null,
-      fileName: ""
+      fileName: "",
     };
   },
 
@@ -166,7 +168,7 @@ export default {
       data.append("title", this.title);
       data.append("description", this.description);
       data.append("price", this.price);
-      data.append("stockQuantity ", this.stockQuantity);
+      data.append("stockQuantity", this.stockQuantity);
       data.append("categoryID", this.categoryID);
       data.append("ownerID", this.ownerID);
       data.append("photo", this.selectedFile, this.selectedFile.name);
@@ -180,14 +182,14 @@ export default {
 
       //api-amazon-clone.herokuapp.com/
 
-      https: if (response.success) {
+      if (response.success) {
         console.log("result: ", response);
         // console.log("ownerID", this.ownerID);
         // console.log("categoryID", this.categoryID);
       }
 
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>

@@ -126,6 +126,7 @@ export default {
 
         if (response.status) {
           this.products.splice(index, 1);
+          this.$nuxt.refresh();
         }
       } catch (error) {
         console.log(error);
