@@ -120,6 +120,7 @@
 export default {
   async asyncData({ $axios }) {
     try {
+      // Testing for local dev
       // let categories = $axios.$get("http://localhost:3000/api/categories");
       // let owners = $axios.$get("http://localhost:3000/api/owners");
 

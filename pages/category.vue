@@ -88,7 +88,6 @@ export default {
 
         let response = this.$axios.$post("/api/categories", data);
 
-        //   this.$router.push("/");
         this.categories.push(data);
       } catch (error) {
         console.log(error);

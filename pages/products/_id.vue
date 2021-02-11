@@ -14,7 +14,6 @@
               <!-- Category Dropdown -->
               <div class="a-spacing-medium">
                 <label for style="margin-bottom: 0px">Category</label>
-                <!-- <select name id class="a-select-option" v-model="categoryID"> -->
 
                 <template>
                   <div v-if="categoryID">
@@ -107,8 +106,6 @@
                     <input type="file" @change="onFileSelected" />
                     <p style="margin-top: -70px">{{ fileName }}</p>
                   </label>
-                  <!-- <img :src="selectedFile" alt="your product photo" /> -->
-                  <!-- <b-img :src="selectedFile" fluid alt="Product photo"></b-img> -->
                 </div>
               </div>
 
@@ -136,11 +133,12 @@
 export default {
   async asyncData({ $axios, params }) {
     try {
+      // Testing for local dev
       // let categories = $axios.$get("http://localhost:3000/api/categories");
       // let owners = $axios.$get("http://localhost:3000/api/owners");
       // let product = $axios.$get(
       //   `http://localhost:3000/api/products/${params.id}`
-      // );
+      // ); 
 
       let categories = $axios.$get("/api/categories");
       let owners = $axios.$get("/api/owners");
@@ -151,8 +149,9 @@ export default {
         owners,
         product,
       ]);
+      // Testing for local dev
       //   console.log(catResponse);
-      // console.log(("From Product Update page: ", productResponse));
+      //   console.log(("From Product Update page: ", productResponse));
       //   console.log(ownerResponse);
 
       return {
@@ -167,7 +166,6 @@ export default {
         description: productResponse.product.description,
         selectedFile: productResponse.product.photo,
         selectedFileCheck: productResponse.product.photo,
-        // fileName: String(productResponse.product.photo),
       };
     } catch (err) {
       console.log(err);
@@ -203,6 +201,7 @@ export default {
       data.append("categoryID", this.categoryID);
       data.append("ownerID", this.ownerID);
 
+      // Testing for local dev
       // if (this.selectedFile !== this.selectedFileCheck) {
       data.append("photo", this.selectedFile, this.selectedFile.name);
       // } else {

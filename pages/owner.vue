@@ -57,13 +57,6 @@
               </div>
 
               <br />
-              <!-- <ul class="list-group-item">
-                <li v-for="owner in owners" :key="owner._id">
-                  <ul>{{owner.name}}</ul>
-                  <ul>{{owner.about}}</ul>
-                  <ul>{{owner.photo}}</ul>
-                </li>
-              </ul>-->
 
               <ul class="list-group">
                 <li
@@ -128,8 +121,6 @@ export default {
 
         let response = this.$axios.$post("/api/owners", data);
 
-        // this.$router.push("/owner");
-        // this.owners.push(data);
         this.owners.push(this.name);
       } catch (error) {
         console.log(error);
